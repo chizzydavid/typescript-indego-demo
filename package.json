@@ -7,9 +7,13 @@
     "start:dev": "ts-node-dev --respawn --transpile-only src",
     "lint": "eslint .  --ext  .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
-    "build": "rimraf ./build && npx tsc",
-    "start": "npm run build && node ./build/",
-    "prod": "npm run start"
+    "build": "rimraf build && npx tsc",
+    "start": "node build/index.js",
+    "prod": "npm run build && npm run start",
+    "postinstall": "tsc"
+  },
+  "engines": {
+    "node": "18.3.0"
   },
   "author": "",
   "license": "ISC",
