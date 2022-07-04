@@ -3,51 +3,51 @@ import { DataTypes, Model, Optional } from 'sequelize'
 import { sequelizeConnection } from '../utils/database'
 
 interface Bike {
-  dockNumber: number,
+  dockNumber: number | null,
   isElectric: boolean,
   isAvailable: boolean,
-  battery: number
+  battery: number | null
 }
 
 interface StationAttributes {
   stationId: string;
   id?: number;
   name?: string;
-  coordinates?:[number];
-  totalDocks?: number;
-  docksAvailable?: number;
-  bikesAvailable?: number;
-  classicBikesAvailable?: number;
-  smartBikesAvailable?: number;
-  electricBikesAvailable?: number;
-  rewardBikesAvailable?: number;
-  rewardDocksAvailable?: number;
-  kioskStatus?: string;
-  kioskPublicStatus?: string;
-  kioskConnectionStatus?: string;
-  kioskType?: number;
-  addressStreet?: string;
-  addressCity?: string;
-  addressState?: string;
-  addressZipCode?: string;
-  bikes: [Bike];
+  coordinates?:number [];
+  totalDocks?: number | null;
+  docksAvailable?: number | null;
+  bikesAvailable?: number | null;
+  classicBikesAvailable?: number | null;
+  smartBikesAvailable?: number | null;
+  electricBikesAvailable?: number | null;
+  rewardBikesAvailable?: number | null;
+  rewardDocksAvailable?: number | null;
+  kioskStatus?: string | null;
+  kioskPublicStatus?: string | null;
+  kioskConnectionStatus?: string | null;
+  kioskType?: number | null;
+  addressStreet?: string | null;
+  addressCity?: string | null;
+  addressState?: string | null;
+  addressZipCode?: string | null;
+  bikes: Bike[];
   isVirtual?: boolean; 
   isEventBased?: boolean; 
-  closeTime?: string;
-  eventEnd?: string;
-  eventStart?: string;
-  notes?: string;
-  openTime?: string;
-  publicText?: string;
-  timeZone?: string;
-  kioskId?: number;
-  trikesAvailable?: number;
+  closeTime?: string | null;
+  eventEnd?: string | null;
+  eventStart?: string | null;
+  notes?: string | null;
+  openTime?: string | null;
+  publicText?: string | null;
+  timeZone?: string | null;
+  kioskId?: number | null;
+  trikesAvailable?: number | null;
   latitude?: number;
   longitude?: number;
   batchId?: string;
   createdAt?: Date;
   updatedAt?: Date;
-  deletedAt?: Date;
+  deletedAt?: Date | null;
 }
 export interface StationInput extends Optional<StationAttributes, 'stationId'> {}
 export interface StationOuput extends Required<StationAttributes> {}

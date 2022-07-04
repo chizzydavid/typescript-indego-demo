@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import StationController from '../controllers/station.controller';
 import { 
   validateISOFormat as validateSnapshotTime,
@@ -6,7 +6,6 @@ import {
 } from '../middlewares/validator';
 
 const router = express.Router();
-
 
 router.post(
   "/",

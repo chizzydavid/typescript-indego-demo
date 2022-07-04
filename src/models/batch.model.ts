@@ -8,7 +8,7 @@ interface BatchAttributes {
   batchId: string;
   createdAt?: Date;
   updatedAt?: Date;
-  deletedAt?: Date;
+  deletedAt?: Date | null;
 }
 export interface BatchInput extends Optional<BatchAttributes, 'batchId'> {}
 export interface BatchOuput extends Required<BatchAttributes> {}

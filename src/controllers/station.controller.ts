@@ -2,6 +2,7 @@ import StationService from "../services/station.service"
 import WeatherService from "../services/weather.service"
 import { Response, NextFunction, Request } from 'express';
 import { CreateStationDTO, UpdateStationDTO } from "../dto/station.dto";
+import logger from "../utils/logger";
 
 /**
  * Fetches all Station Snapshots for Passed Timestamp
@@ -34,6 +35,7 @@ const getOneStationSnapshot = async (req: Request, res: Response, next: NextFunc
     const { kioskId } = req.params;  
     const station = await StationService.findOne(parseInt(kioskId), atTime);
     const weather = await WeatherService.findOne(atTime);
+    logger.info('retrieved single snapshot')
 
     res.status(200).json({ 
       data: {
@@ -43,6 +45,7 @@ const getOneStationSnapshot = async (req: Request, res: Response, next: NextFunc
       }
     });
   } catch(error) {
+    logger.error(error as string)
     next(error)
   }
 }
@@ -50,11 +53,10 @@ const getOneStationSnapshot = async (req: Request, res: Response, next: NextFunc
 const createSnapshot = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const station = await StationService.create(req.body as CreateStationDTO);
-
     res.status(200).json({ 
       data: station
     });
-  } catch(error) {
+  } catch(error: any) {  
     next(error)
   }
 }
@@ -76,7 +78,6 @@ const deleteSnapshot = async (req: Request, res: Response, next: NextFunction) =
   try {
     const { stationId } = req.params;  
     await StationService.deleteById(stationId);
-
     res.status(204).send();
   } catch(error) {
     next(error)

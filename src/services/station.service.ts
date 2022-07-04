@@ -65,7 +65,7 @@ const findAll = async (atTime: string): Promise<Station[]> => {
  *
  */
 const findOne = async (kioskId: number, atTime: string) => {
-  //wrap in try catch, catch 404 error and send more descriptive error message
+  // wrap in try catch, catch 404 error and send a more descriptive error message
   const data = await stationDal.findOne({
     where: {
       kioskId,

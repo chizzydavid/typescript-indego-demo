@@ -45,10 +45,10 @@ interface WeatherAttributes {
     lon: number,
     lat: number
   };
-  weather: [WeatherItem];
+  weather: WeatherItem[];
   createdAt?: Date;
   updatedAt?: Date;
-  deletedAt?: Date;
+  deletedAt?: Date | null;
 }
 export interface WeatherInput extends Optional<WeatherAttributes, 'weatherId'> {}
 export interface WeatherOuput extends Required<WeatherAttributes> {}

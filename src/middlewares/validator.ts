@@ -21,7 +21,6 @@ export const validateISOFormat = (req: Request, res: Response, next: NextFunctio
   next();
 }
 
-
 /**
  * Validator Middleware for Valid Integers
  *

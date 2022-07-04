@@ -8,34 +8,34 @@ export const create = async (payload: WeatherInput): Promise<WeatherOuput> => {
   return weather
 }
 
-export const findOrCreate = async (payload: WeatherInput): Promise<WeatherOuput> => {
-  const [weather] = await Weather.findOrCreate({
-    where: {
-      name: payload.name
-    },
-    defaults: payload
-  })
+// export const findOrCreate = async (payload: WeatherInput): Promise<WeatherOuput> => {
+//   const [weather] = await Weather.findOrCreate({
+//     where: {
+//       name: payload.name
+//     },
+//     defaults: payload
+//   })
 
-  return weather
-}
+//   return weather
+// }
 
-export const update = async (id: string, payload: Partial<WeatherInput>): Promise<WeatherOuput> => {
-  const weather = await Weather.findByPk(id)
+// export const update = async (id: string, payload: Partial<WeatherInput>): Promise<WeatherOuput> => {
+//   const weather = await Weather.findByPk(id)
 
-  if (!weather) {
-    throw new NotFoundError(`Weather with id: ${id} not found`);
-  }
-  return await weather.update(payload);
-}
+//   if (!weather) {
+//     throw new NotFoundError(`Weather with id: ${id} not found`);
+//   }
+//   return await weather.update(payload);
+// }
 
-export const findById = async (id: string): Promise<WeatherOuput> => {
-  const weather = await Weather.findByPk(id)
+// export const findById = async (id: string): Promise<WeatherOuput> => {
+//   const weather = await Weather.findByPk(id)
 
-  if (!weather) {
-    throw new NotFoundError(`Weather with id: ${id} not found`);
-  }
-  return weather
-}
+//   if (!weather) {
+//     throw new NotFoundError(`Weather with id: ${id} not found`);
+//   }
+//   return weather
+// }
 
 export const findOne = async (options?: FindOptions<WeatherInput>): Promise<WeatherOuput> => {
   const weather = await Weather.findOne({ ...options })
@@ -46,13 +46,13 @@ export const findOne = async (options?: FindOptions<WeatherInput>): Promise<Weat
   return weather
 }
 
-export const deleteById = async (id: string): Promise<boolean> => {
-  const deletedWeatherCount = await Weather.destroy({
-    where: { weatherId: id }
-  });
+// export const deleteById = async (id: string): Promise<boolean> => {
+//   const deletedWeatherCount = await Weather.destroy({
+//     where: { weatherId: id }
+//   });
 
-  return !!deletedWeatherCount;
-}
+//   return !!deletedWeatherCount;
+// }
 
 export const findAll = async (options?: FindOptions<WeatherInput>): Promise<WeatherOuput[]> => { 
   return Weather.findAll({ ...options });

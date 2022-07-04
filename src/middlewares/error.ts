@@ -4,7 +4,7 @@ import CONFIG from '../config/app.config';
 import logger from '../utils/logger';
 
 /**
- * Error handler. Send stacktrace only during development
+ * Error handler Send stacktrace only during development
  */
 export const errorHandler = (err: any, req: Request, res: Response) => {
   const statusCode = err.status || httpStatus.INTERNAL_SERVER_ERROR;
@@ -21,12 +21,12 @@ export const errorHandler = (err: any, req: Request, res: Response) => {
 	};
 
   const isProduction = CONFIG.ENV === 'production';
-  if (isProduction) {
-    // delete response.stack
-  } else {
+  const isDevelopment = CONFIG.ENV === 'development';
+
+  if (!isProduction) {
     logger.error(err.message);
   }
-  res.status(statusCode).json(response);
+  return res.status(statusCode).json(response);
 };
 
 

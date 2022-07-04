@@ -1,4 +1,4 @@
-const APP_CONFIG = require('./app.config')
+const APP_CONFIG = require('../src/config/app.config')
 
 const {
   DB_HOST,
@@ -17,20 +17,27 @@ module.exports = {
     host: DB_HOST,
     dialect: DB_DIALECT,
     dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      }
+    }
+  },
+  
+  test: {
+    username: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    host: DB_HOST,
+    dialect: DB_DIALECT,
+    dialectOptions: {
         ssl: {
           require: true,
           rejectUnauthorized: false
         }
       }
     }
-  
-  // test: {
-  //   username: root,
-  //   password: null,
-  //   database: database_test,
-  //   host: 127.0.0.1,
-  //   dialect: mysql
-  // },
+
   // production: {
   //   username: root,
   //   password: null,
